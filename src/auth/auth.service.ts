@@ -10,9 +10,17 @@ export class AuthService {
 
   async validateUser(details: UserDetails) {
     const user = await this.userService.findUser(details.discord_id);
-    console.log(user, details);
 
-    if (user) return user;
+    if (user) {
+      const { discord_id: _, ...updatedDetails } = details;
+
+      const updatedUser = await this.userService.updateUser(
+        user,
+        updatedDetails,
+      );
+
+      return updatedUser;
+    }
 
     const newUser = await this.userService.createUser(details);
     return newUser;
