@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { SERVICES } from 'src/common/constants';
+import { PERMISSIONS, SERVICES } from 'src/common/constants';
 import { IDiscordService } from './discord.interface';
 import { IDiscordHttpService } from './http';
 
@@ -18,6 +18,17 @@ export class DiscordService implements IDiscordService {
   async getUserGuilds(accessToken: string) {
     const { data } = await this.discordHttpService.fetchUserGuilds(accessToken);
     return data;
+  }
+
+  async getAdminGuilds(accessToken: string) {
+    const userGuilds = await this.getUserGuilds(accessToken);
+    const botGuilds = await this.getBotGuilds();
+
+    const adminGuilds = userGuilds.filter(
+      ({ permissions }) => (parseInt(permissions) & PERMISSIONS.ADMIN) === 8,
+    );
+
+    return adminGuilds;
   }
 
   async getMutualGuilds(accessToken: string) {

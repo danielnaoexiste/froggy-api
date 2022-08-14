@@ -10,6 +10,11 @@ export class DiscordController {
     @Inject(SERVICES.DISCORD) private readonly discordService: IDiscordService,
   ) {}
 
+  @Get('guilds/admin')
+  getAdminGuilds(@AuthUser() user: User) {
+    return this.discordService.getAdminGuilds(user.access_token);
+  }
+
   @Get('guilds/mutual')
   getMutualGuilds(@AuthUser() user: User) {
     return this.discordService.getMutualGuilds(user.access_token);
