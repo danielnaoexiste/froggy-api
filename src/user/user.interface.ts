@@ -1,8 +1,8 @@
-import { User } from 'src/schemas/user.schema';
-import { UpdateUserDetails, UserDetails } from 'src/utils/constants';
+import { User } from 'src/models/user.schema';
+import { IUpdateUserDetails, IUserDetails } from 'src/common/interfaces';
 
 export interface IUserService {
   findUser(discordId: string);
-  createUser(details: UserDetails);
-  updateUser(user: User, details: UpdateUserDetails);
+  createUser(details: IUserDetails);
+  updateUser(user: User, details: IUpdateUserDetails);
 }

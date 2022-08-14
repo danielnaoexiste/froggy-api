@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Profile, Strategy } from 'passport-discord';
 import { IAuthService } from 'src/auth/auth.interface';
-import { scopes, SERVICES } from './constants';
+import { scopes, SERVICES } from 'src/common/constants';
 
 @Injectable()
 export class DiscordStrategy extends PassportStrategy(Strategy) {

@@ -2,21 +2,21 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { User } from 'src/schemas/user.schema';
+import { User } from 'src/models/user.schema';
 import { IUserService } from './user.interface';
-import { UpdateUserDetails, UserDetails } from 'src/utils/constants';
+import { IUpdateUserDetails, IUserDetails } from 'src/common/interfaces';
 
 @Injectable()
 export class UserService implements IUserService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  async createUser(details: UserDetails) {
+  async createUser(details: IUserDetails) {
     console.log('Create User', details);
     const createdUser = new this.userModel(details);
     return createdUser.save();
   }
 
-  async updateUser(user: User, details: UpdateUserDetails) {
+  async updateUser(user: User, details: IUpdateUserDetails) {
     console.log('Update User');
     const updatedUser = await this.userModel.findOneAndUpdate(
       { discord_id: user.discord_id },

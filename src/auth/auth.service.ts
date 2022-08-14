@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IUserService } from 'src/user/user.interface';
-import { SERVICES, UserDetails } from 'src/utils/constants';
+import { SERVICES } from 'src/common/constants';
+import { IUserDetails } from 'src/common/interfaces';
 
 @Injectable()
 export class AuthService {
@@ -8,7 +9,7 @@ export class AuthService {
     @Inject(SERVICES.USER) private readonly userService: IUserService,
   ) {}
 
-  async validateUser(details: UserDetails) {
+  async validateUser(details: IUserDetails) {
     const user = await this.userService.findUser(details.discord_id);
 
     if (user) {
