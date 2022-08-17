@@ -20,17 +20,7 @@ export class DiscordService implements IDiscordService {
     return data;
   }
 
-  async getAdminGuilds(accessToken: string) {
-    const userGuilds = await this.getUserGuilds(accessToken);
-
-    const adminGuilds = userGuilds.filter(
-      ({ permissions }) => (parseInt(permissions) & PERMISSIONS.ADMIN) === 8,
-    );
-
-    return adminGuilds;
-  }
-
-  async getMutualGuilds(accessToken: string) {
+  async getGuilds(accessToken: string) {
     const userGuilds = await this.getUserGuilds(accessToken);
     const botGuilds = await this.getBotGuilds();
 
@@ -38,7 +28,11 @@ export class DiscordService implements IDiscordService {
       botGuilds.some((botGuild) => botGuild.id === guild.id),
     );
 
-    return mutualGuilds;
+    const adminGuilds = userGuilds.filter(
+      ({ permissions }) => (parseInt(permissions) & PERMISSIONS.ADMIN) === 8,
+    );
+
+    return { mutualGuilds, adminGuilds };
   }
 
   getGuildChannels(guildId: string) {
