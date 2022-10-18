@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { UserModule } from 'src/user/user.module';
-import { SERVICES } from 'src/utils/constants';
-import { DiscordStrategy } from 'src/utils/DiscordStategy';
-import { SessionSerializer } from 'src/utils/SessionSerialzier';
+import { SERVICES } from 'src/common/constants';
+import { DiscordStrategy } from 'src/auth/discord.strategy';
+import { SessionSerializer } from './serializers/session.serializer';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 

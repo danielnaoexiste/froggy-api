@@ -4,10 +4,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   GuildConfig,
   GuildConfigSchema,
-} from './schemas/guildconfiguration.schema';
-import { User, UserSchema } from './schemas/user.schema';
+} from './models/guild-configuration.schema';
+import { User, UserSchema } from './models/user.schema';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { DiscordModule } from './discord/discord.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module';
     ]),
     AuthModule,
     UserModule,
+    DiscordModule,
   ],
   controllers: [],
   providers: [],
