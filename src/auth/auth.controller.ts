@@ -2,7 +2,7 @@ import { Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { User } from 'src/models/user.schema';
 import { AuthUser } from 'src/common/decorators';
-import { AuthenticatedGuard, DiscordAuthGuard } from 'src/common/Guards';
+import { AuthenticatedGuard, DiscordAuthGuard } from 'src/common/guards';
 import { ROUTES } from 'src/common/constants';
 import { ApiExcludeEndpoint } from '@nestjs/swagger';
 
