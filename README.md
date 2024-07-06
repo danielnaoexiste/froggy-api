@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/danielnaoexiste/froggy-api">
-    <img src="static/logo.jpg" alt="Logo" width="80" height="80">
+    <img src="static/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Froggy API</h3>
